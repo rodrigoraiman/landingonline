@@ -1,0 +1,907 @@
+Attached HTML and CSS Context
+
+<div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center"><button class="bg-white text-gray-900 font-semibold px-6 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-gray-100">Voir plus</button></div>
+
+
+/* Matched Rule from user-agent */
+div {
+  display: block;
+}
+
+/* Matched Rule from user-agent */
+address, blockquote, center, div, figure, figcaption, footer, form, header, hr, legend, listing, main, p, plaintext, pre, summary, xmp, article, aside, h1, h2, h3, h4, h5, h6, hgroup, nav, section, search, table, caption, colgroup, col, thead, tbody, tfoot, tr, td, th, dir, dd, dl, dt, menu, ol, ul, li, bdi, output, [dir="ltr" i], [dir="rtl" i], [dir="auto" i] {
+  unicode-bidi: isolate;
+}
+
+/* Matched Rule from regular */
+*, :after, :before, ::backdrop {
+  box-sizing: border-box;
+  border: 0 solid;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border-top-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 0px;
+  border-left-width: 0px;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-top-color: initial;
+  border-right-color: initial;
+  border-bottom-color: initial;
+  border-left-color: initial;
+  border-image-source: initial;
+  border-image-slice: initial;
+  border-image-width: initial;
+  border-image-outset: initial;
+  border-image-repeat: initial;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+}
+
+/* Matched Rule from regular */
+.absolute {
+  position: absolute;
+  position: absolute;
+}
+
+/* Matched Rule from regular */
+.inset-0 {
+  inset: calc(var(--spacing) * 0);
+}
+
+/* Matched Rule from regular */
+.flex {
+  display: flex;
+  display: flex;
+}
+
+/* Matched Rule from regular */
+.items-center {
+  align-items: center;
+  align-items: center;
+}
+
+/* Matched Rule from regular */
+.justify-center {
+  justify-content: center;
+  justify-content: center;
+}
+
+/* Matched Rule from regular */
+.bg-black {
+  background-color: var(--color-black);
+  background-color: var(--color-black);
+}
+
+/* Matched Rule from regular */
+.transition-all {
+  transition-property: all;
+  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+  transition-duration: var(--tw-duration, var(--default-transition-duration));
+  transition-property: all;
+  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+  transition-duration: var(--tw-duration, var(--default-transition-duration));
+}
+
+/* Matched Rule from regular */
+.duration-300 {
+  --tw-duration: .3s;
+  transition-duration: .3s;
+  --tw-duration: .3s;
+  transition-duration: 0.3s;
+}
+
+/* Matched Rule from regular */
+* {
+  transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+  transition-duration: var(--tw-duration, var(--default-transition-duration));
+  --tw-duration: .3s;
+  transition-duration: .3s;
+  transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+  --tw-duration: .3s;
+  transition-duration: 0.3s;
+}
+
+/* Inherited from ancestor level 1 (user-agent) */
+div {
+  display: block;
+}
+
+/* Inherited from ancestor level 1 (user-agent) */
+address, blockquote, center, div, figure, figcaption, footer, form, header, hr, legend, listing, main, p, plaintext, pre, summary, xmp, article, aside, h1, h2, h3, h4, h5, h6, hgroup, nav, section, search, table, caption, colgroup, col, thead, tbody, tfoot, tr, td, th, dir, dd, dl, dt, menu, ol, ul, li, bdi, output, [dir="ltr" i], [dir="rtl" i], [dir="auto" i] {
+  unicode-bidi: isolate;
+}
+
+/* Inherited from ancestor level 1 (regular) */
+*, :after, :before, ::backdrop {
+  box-sizing: border-box;
+  border: 0 solid;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border-top-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 0px;
+  border-left-width: 0px;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-top-color: initial;
+  border-right-color: initial;
+  border-bottom-color: initial;
+  border-left-color: initial;
+  border-image-source: initial;
+  border-image-slice: initial;
+  border-image-width: initial;
+  border-image-outset: initial;
+  border-image-repeat: initial;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+}
+
+/* Inherited from ancestor level 1 (regular) */
+.relative {
+  position: relative;
+  position: relative;
+}
+
+/* Inherited from ancestor level 1 (regular) */
+.aspect-video {
+  aspect-ratio: var(--aspect-video);
+  aspect-ratio: var(--aspect-video);
+}
+
+/* Inherited from ancestor level 1 (regular) */
+.overflow-hidden {
+  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+/* Inherited from ancestor level 1 (regular) */
+.rounded-lg {
+  border-radius: var(--radius-lg);
+}
+
+/* Inherited from ancestor level 1 (regular) */
+.bg-white {
+  background-color: var(--color-white);
+  background-color: var(--color-white);
+}
+
+/* Inherited from ancestor level 1 (regular) */
+.shadow-md {
+  --tw-shadow: 0 4px 6px -1px var(--tw-shadow-color, #0000001a), 0 2px 4px -2px var(--tw-shadow-color, #0000001a);
+  box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  --tw-shadow: 0 4px 6px -1px var(--tw-shadow-color, #0000001a), 0 2px 4px -2px var(--tw-shadow-color, #0000001a);
+  box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+}
+
+/* Inherited from ancestor level 1 (regular) */
+.transition-shadow {
+  transition-property: box-shadow;
+  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+  transition-duration: var(--tw-duration, var(--default-transition-duration));
+  transition-property: box-shadow;
+  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+  transition-duration: var(--tw-duration, var(--default-transition-duration));
+}
+
+/* Inherited from ancestor level 1 (regular) */
+* {
+  transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+  transition-duration: var(--tw-duration, var(--default-transition-duration));
+  --tw-duration: .3s;
+  transition-duration: .3s;
+  transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+  --tw-duration: .3s;
+  transition-duration: 0.3s;
+}
+
+/* Inherited from ancestor level 2 (user-agent) */
+div {
+  display: block;
+}
+
+/* Inherited from ancestor level 2 (user-agent) */
+address, blockquote, center, div, figure, figcaption, footer, form, header, hr, legend, listing, main, p, plaintext, pre, summary, xmp, article, aside, h1, h2, h3, h4, h5, h6, hgroup, nav, section, search, table, caption, colgroup, col, thead, tbody, tfoot, tr, td, th, dir, dd, dl, dt, menu, ol, ul, li, bdi, output, [dir="ltr" i], [dir="rtl" i], [dir="auto" i] {
+  unicode-bidi: isolate;
+}
+
+/* Inherited from ancestor level 2 (regular) */
+*, :after, :before, ::backdrop {
+  box-sizing: border-box;
+  border: 0 solid;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border-top-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 0px;
+  border-left-width: 0px;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-top-color: initial;
+  border-right-color: initial;
+  border-bottom-color: initial;
+  border-left-color: initial;
+  border-image-source: initial;
+  border-image-slice: initial;
+  border-image-width: initial;
+  border-image-outset: initial;
+  border-image-repeat: initial;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+}
+
+/* Inherited from ancestor level 2 (regular) */
+.grid {
+  display: grid;
+  display: grid;
+}
+
+/* Inherited from ancestor level 2 (regular) */
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  grid-template-columns: repeat(1, minmax(0px, 1fr));
+}
+
+/* Inherited from ancestor level 2 (regular) */
+.gap-6 {
+  gap: calc(var(--spacing) * 6);
+}
+
+/* Inherited from ancestor level 2 (regular) */
+* {
+  transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+  transition-duration: var(--tw-duration, var(--default-transition-duration));
+  --tw-duration: .3s;
+  transition-duration: .3s;
+  transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+  --tw-duration: .3s;
+  transition-duration: 0.3s;
+}
+
+/* Inherited from ancestor level 3 (user-agent) */
+div {
+  display: block;
+}
+
+/* Inherited from ancestor level 3 (user-agent) */
+address, blockquote, center, div, figure, figcaption, footer, form, header, hr, legend, listing, main, p, plaintext, pre, summary, xmp, article, aside, h1, h2, h3, h4, h5, h6, hgroup, nav, section, search, table, caption, colgroup, col, thead, tbody, tfoot, tr, td, th, dir, dd, dl, dt, menu, ol, ul, li, bdi, output, [dir="ltr" i], [dir="rtl" i], [dir="auto" i] {
+  unicode-bidi: isolate;
+}
+
+/* Inherited from ancestor level 3 (regular) */
+*, :after, :before, ::backdrop {
+  box-sizing: border-box;
+  border: 0 solid;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border-top-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 0px;
+  border-left-width: 0px;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-top-color: initial;
+  border-right-color: initial;
+  border-bottom-color: initial;
+  border-left-color: initial;
+  border-image-source: initial;
+  border-image-slice: initial;
+  border-image-width: initial;
+  border-image-outset: initial;
+  border-image-repeat: initial;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+}
+
+/* Inherited from ancestor level 3 (regular) */
+.mx-auto {
+  margin-inline: auto;
+  margin-inline-start: auto;
+  margin-inline-end: auto;
+}
+
+/* Inherited from ancestor level 3 (regular) */
+.max-w-7xl {
+  max-width: var(--container-7xl);
+  max-width: var(--container-7xl);
+}
+
+/* Inherited from ancestor level 3 (regular) */
+* {
+  transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+  transition-duration: var(--tw-duration, var(--default-transition-duration));
+  --tw-duration: .3s;
+  transition-duration: .3s;
+  transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+  --tw-duration: .3s;
+  transition-duration: 0.3s;
+}
+
+/* Inherited from ancestor level 4 (user-agent) */
+article, aside, footer, header, hgroup, main, nav, search, section {
+  display: block;
+}
+
+/* Inherited from ancestor level 4 (user-agent) */
+address, blockquote, center, div, figure, figcaption, footer, form, header, hr, legend, listing, main, p, plaintext, pre, summary, xmp, article, aside, h1, h2, h3, h4, h5, h6, hgroup, nav, section, search, table, caption, colgroup, col, thead, tbody, tfoot, tr, td, th, dir, dd, dl, dt, menu, ol, ul, li, bdi, output, [dir="ltr" i], [dir="rtl" i], [dir="auto" i] {
+  unicode-bidi: isolate;
+}
+
+/* Inherited from ancestor level 4 (regular) */
+*, :after, :before, ::backdrop {
+  box-sizing: border-box;
+  border: 0 solid;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border-top-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 0px;
+  border-left-width: 0px;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-top-color: initial;
+  border-right-color: initial;
+  border-bottom-color: initial;
+  border-left-color: initial;
+  border-image-source: initial;
+  border-image-slice: initial;
+  border-image-width: initial;
+  border-image-outset: initial;
+  border-image-repeat: initial;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+}
+
+/* Inherited from ancestor level 4 (regular) */
+.bg-gray-50 {
+  background-color: var(--color-gray-50);
+  background-color: var(--color-gray-50);
+}
+
+/* Inherited from ancestor level 4 (regular) */
+.px-4 {
+  padding-inline: calc(var(--spacing) * 4);
+}
+
+/* Inherited from ancestor level 4 (regular) */
+.py-16 {
+  padding-block: calc(var(--spacing) * 16);
+}
+
+/* Inherited from ancestor level 4 (regular) */
+.transition-colors {
+  transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+  transition-duration: var(--tw-duration, var(--default-transition-duration));
+  transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+  transition-duration: var(--tw-duration, var(--default-transition-duration));
+}
+
+/* Inherited from ancestor level 4 (regular) */
+* {
+  transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+  transition-duration: var(--tw-duration, var(--default-transition-duration));
+  --tw-duration: .3s;
+  transition-duration: .3s;
+  transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+  --tw-duration: .3s;
+  transition-duration: 0.3s;
+}
+
+/* Inherited from ancestor level 5 (user-agent) */
+body {
+  display: block;
+  margin-top: 8px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  margin-left: 8px;
+}
+
+/* Inherited from ancestor level 5 (regular) */
+*, :after, :before, ::backdrop {
+  box-sizing: border-box;
+  border: 0 solid;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border-top-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 0px;
+  border-left-width: 0px;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-top-color: initial;
+  border-right-color: initial;
+  border-bottom-color: initial;
+  border-left-color: initial;
+  border-image-source: initial;
+  border-image-slice: initial;
+  border-image-width: initial;
+  border-image-outset: initial;
+  border-image-repeat: initial;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+}
+
+/* Inherited from ancestor level 5 (regular) */
+.bg-white {
+  background-color: var(--color-white);
+  background-color: var(--color-white);
+}
+
+/* Inherited from ancestor level 5 (regular) */
+.text-gray-900 {
+  color: var(--color-gray-900);
+  color: var(--color-gray-900);
+}
+
+/* Inherited from ancestor level 5 (regular) */
+.antialiased {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Inherited from ancestor level 5 (regular) */
+.transition-colors {
+  transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+  transition-duration: var(--tw-duration, var(--default-transition-duration));
+  transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+  transition-duration: var(--tw-duration, var(--default-transition-duration));
+}
+
+/* Inherited from ancestor level 5 (regular) */
+.dark\:bg-gray-900 {
+  background-color: var(--color-gray-900);
+  background-color: var(--color-gray-900);
+}
+
+/* Inherited from ancestor level 5 (regular) */
+.dark\:text-gray-100 {
+  color: var(--color-gray-100);
+  color: var(--color-gray-100);
+}
+
+/* Inherited from ancestor level 5 (regular) */
+* {
+  transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+  transition-duration: var(--tw-duration, var(--default-transition-duration));
+  --tw-duration: .3s;
+  transition-duration: .3s;
+  transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+  --tw-duration: .3s;
+  transition-duration: 0.3s;
+}
+
+/* Inherited from ancestor level 5 (regular) */
+body {
+  transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+  transition-duration: var(--tw-duration, var(--default-transition-duration));
+  --tw-duration: .3s;
+  transition-duration: .3s;
+  transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+  --tw-duration: .3s;
+  transition-duration: 0.3s;
+}
+
+/* Inherited from ancestor level 5 (regular) */
+.geist_a71539c9-module__T19VSG__variable {
+  --font-geist-sans: "Geist", "Geist Fallback";
+  --font-geist-sans: "Geist", "Geist Fallback";
+}
+
+/* Inherited from ancestor level 5 (regular) */
+.geist_mono_8d43a2aa-module__8Li5zG__variable {
+  --font-geist-mono: "Geist Mono", "Geist Mono Fallback";
+  --font-geist-mono: "Geist Mono", "Geist Mono Fallback";
+}
+
+/* Inherited from ancestor level 6 (user-agent) */
+html {
+  display: block;
+}
+
+/* Inherited from ancestor level 6 (user-agent) */
+:root {
+  view-transition-name: root;
+}
+
+/* Inherited from ancestor level 6 (regular) */
+:root, :host {
+  --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --color-red-500: #fb2c36;
+  --color-red-700: #bf000f;
+  --color-yellow-400: #fac800;
+  --color-green-50: #f0fdf4;
+  --color-green-100: #dcfce7;
+  --color-green-200: #b9f8cf;
+  --color-green-300: #7bf1a8;
+  --color-green-400: #05df72;
+  --color-green-500: #00c758;
+  --color-green-600: #00a544;
+  --color-green-700: #008138;
+  --color-green-800: #016630;
+  --color-green-900: #0d542b;
+  --color-emerald-400: #00d294;
+  --color-emerald-600: #009767;
+  --color-teal-400: #00d3bd;
+  --color-teal-600: #009588;
+  --color-cyan-400: #00d2ef;
+  --color-cyan-600: #0092b5;
+  --color-sky-400: #00bcfe;
+  --color-sky-600: #0084cc;
+  --color-blue-50: #eff6ff;
+  --color-blue-200: #bedbff;
+  --color-blue-400: #54a2ff;
+  --color-blue-500: #3080ff;
+  --color-blue-600: #155dfc;
+  --color-blue-900: #1c398e;
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5dc;
+  --color-gray-400: #99a1af;
+  --color-gray-500: #6a7282;
+  --color-gray-600: #4a5565;
+  --color-gray-700: #364153;
+  --color-gray-800: #1e2939;
+  --color-gray-900: #101828;
+  --color-gray-950: #030712;
+  --color-black: #000;
+  --color-white: #fff;
+  --spacing: .25rem;
+  --container-2xl: 42rem;
+  --container-3xl: 48rem;
+  --container-4xl: 56rem;
+  --container-7xl: 80rem;
+  --text-xs: .75rem;
+  --text-xs--line-height: calc(1 / .75);
+  --text-sm: .875rem;
+  --text-sm--line-height: calc(1.25 / .875);
+  --text-lg: 1.125rem;
+  --text-lg--line-height: calc(1.75 / 1.125);
+  --text-xl: 1.25rem;
+  --text-xl--line-height: calc(1.75 / 1.25);
+  --text-2xl: 1.5rem;
+  --text-2xl--line-height: calc(2 / 1.5);
+  --text-3xl: 1.875rem;
+  --text-3xl--line-height: calc(2.25 / 1.875);
+  --text-4xl: 2.25rem;
+  --text-4xl--line-height: calc(2.5 / 2.25);
+  --text-5xl: 3rem;
+  --text-5xl--line-height: 1;
+  --text-6xl: 3.75rem;
+  --text-6xl--line-height: 1;
+  --text-7xl: 4.5rem;
+  --text-7xl--line-height: 1;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --leading-tight: 1.25;
+  --leading-relaxed: 1.625;
+  --radius-lg: .5rem;
+  --ease-out: cubic-bezier(0, 0, .2, 1);
+  --animate-pulse: pulse 2s cubic-bezier(.4, 0, .6, 1) infinite;
+  --blur-3xl: 64px;
+  --aspect-video: 16 / 9;
+  --default-transition-duration: .15s;
+  --default-transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+  --default-font-family: var(--font-sans);
+  --default-mono-font-family: var(--font-mono);
+  --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --color-red-500: #fb2c36;
+  --color-red-700: #bf000f;
+  --color-yellow-400: #fac800;
+  --color-green-50: #f0fdf4;
+  --color-green-100: #dcfce7;
+  --color-green-200: #b9f8cf;
+  --color-green-300: #7bf1a8;
+  --color-green-400: #05df72;
+  --color-green-500: #00c758;
+  --color-green-600: #00a544;
+  --color-green-700: #008138;
+  --color-green-800: #016630;
+  --color-green-900: #0d542b;
+  --color-emerald-400: #00d294;
+  --color-emerald-600: #009767;
+  --color-teal-400: #00d3bd;
+  --color-teal-600: #009588;
+  --color-cyan-400: #00d2ef;
+  --color-cyan-600: #0092b5;
+  --color-sky-400: #00bcfe;
+  --color-sky-600: #0084cc;
+  --color-blue-50: #eff6ff;
+  --color-blue-200: #bedbff;
+  --color-blue-400: #54a2ff;
+  --color-blue-500: #3080ff;
+  --color-blue-600: #155dfc;
+  --color-blue-900: #1c398e;
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5dc;
+  --color-gray-400: #99a1af;
+  --color-gray-500: #6a7282;
+  --color-gray-600: #4a5565;
+  --color-gray-700: #364153;
+  --color-gray-800: #1e2939;
+  --color-gray-900: #101828;
+  --color-gray-950: #030712;
+  --color-black: #000;
+  --color-white: #fff;
+  --spacing: .25rem;
+  --container-2xl: 42rem;
+  --container-3xl: 48rem;
+  --container-4xl: 56rem;
+  --container-7xl: 80rem;
+  --text-xs: .75rem;
+  --text-xs--line-height: calc(1 / .75);
+  --text-sm: .875rem;
+  --text-sm--line-height: calc(1.25 / .875);
+  --text-lg: 1.125rem;
+  --text-lg--line-height: calc(1.75 / 1.125);
+  --text-xl: 1.25rem;
+  --text-xl--line-height: calc(1.75 / 1.25);
+  --text-2xl: 1.5rem;
+  --text-2xl--line-height: calc(2 / 1.5);
+  --text-3xl: 1.875rem;
+  --text-3xl--line-height: calc(2.25 / 1.875);
+  --text-4xl: 2.25rem;
+  --text-4xl--line-height: calc(2.5 / 2.25);
+  --text-5xl: 3rem;
+  --text-5xl--line-height: 1;
+  --text-6xl: 3.75rem;
+  --text-6xl--line-height: 1;
+  --text-7xl: 4.5rem;
+  --text-7xl--line-height: 1;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --leading-tight: 1.25;
+  --leading-relaxed: 1.625;
+  --radius-lg: .5rem;
+  --ease-out: cubic-bezier(0, 0, .2, 1);
+  --animate-pulse: pulse 2s cubic-bezier(.4, 0, .6, 1) infinite;
+  --blur-3xl: 64px;
+  --aspect-video: 16 / 9;
+  --default-transition-duration: .15s;
+  --default-transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+  --default-font-family: var(--font-sans);
+  --default-mono-font-family: var(--font-mono);
+}
+
+/* Inherited from ancestor level 6 (regular) */
+:root, :host {
+  --color-red-500: lab(55.4814% 75.0732 48.8528);
+  --color-red-700: lab(40.4273% 67.2623 53.7441);
+  --color-yellow-400: lab(83.2664% 8.65132 106.895);
+  --color-green-50: lab(98.1563% -5.60117 2.75915);
+  --color-green-100: lab(96.1861% -13.8464 6.52365);
+  --color-green-200: lab(92.4222% -26.4702 12.9427);
+  --color-green-300: lab(86.9953% -47.2691 25.0054);
+  --color-green-400: lab(78.503% -64.9265 39.7492);
+  --color-green-500: lab(70.5521% -66.5147 45.8073);
+  --color-green-600: lab(59.0978% -58.6621 41.2579);
+  --color-green-700: lab(47.0329% -47.0239 31.4788);
+  --color-green-800: lab(37.4616% -36.7971 22.9692);
+  --color-green-900: lab(30.797% -29.6927 17.382);
+  --color-emerald-400: lab(75.0771% -60.7313 19.4147);
+  --color-emerald-600: lab(55.0481% -49.9246 15.93);
+  --color-teal-400: lab(76.0109% -53.3483 -2.27906);
+  --color-teal-600: lab(55.0223% -41.0774 -3.90277);
+  --color-cyan-400: lab(76.6045% -40.9406 -29.6231);
+  --color-cyan-600: lab(55.1767% -26.7496 -30.5139);
+  --color-sky-400: lab(70.687% -23.6078 -45.9483);
+  --color-sky-600: lab(51.7754% -11.4712 -49.8349);
+  --color-blue-50: lab(96.492% -1.14644 -5.11479);
+  --color-blue-200: lab(86.15% -4.04379 -21.0797);
+  --color-blue-400: lab(65.0361% -1.42065 -56.9802);
+  --color-blue-500: lab(54.1736% 13.3369 -74.6839);
+  --color-blue-600: lab(44.0605% 29.0279 -86.0352);
+  --color-blue-900: lab(26.1542% 15.7545 -51.5504);
+  --color-gray-50: lab(98.2596% -.247031 -.706708);
+  --color-gray-100: lab(96.1596% -.0823438 -1.13575);
+  --color-gray-200: lab(91.6229% -.159115 -2.26791);
+  --color-gray-300: lab(85.1236% -.612259 -3.7138);
+  --color-gray-400: lab(65.9269% -.832707 -8.17473);
+  --color-gray-500: lab(47.7841% -.393182 -10.0268);
+  --color-gray-600: lab(35.6337% -1.58697 -10.8425);
+  --color-gray-700: lab(27.1134% -.956401 -12.3224);
+  --color-gray-800: lab(16.1051% -1.18239 -11.7533);
+  --color-gray-900: lab(8.11897% .811279 -12.254);
+  --color-gray-950: lab(1.90334% .278696 -5.48866);
+  --color-red-500: lab(55.4814% 75.0732 48.8528);
+  --color-red-700: lab(40.4273% 67.2623 53.7441);
+  --color-yellow-400: lab(83.2664% 8.65132 106.895);
+  --color-green-50: lab(98.1563% -5.60117 2.75915);
+  --color-green-100: lab(96.1861% -13.8464 6.52365);
+  --color-green-200: lab(92.4222% -26.4702 12.9427);
+  --color-green-300: lab(86.9953% -47.2691 25.0054);
+  --color-green-400: lab(78.503% -64.9265 39.7492);
+  --color-green-500: lab(70.5521% -66.5147 45.8073);
+  --color-green-600: lab(59.0978% -58.6621 41.2579);
+  --color-green-700: lab(47.0329% -47.0239 31.4788);
+  --color-green-800: lab(37.4616% -36.7971 22.9692);
+  --color-green-900: lab(30.797% -29.6927 17.382);
+  --color-emerald-400: lab(75.0771% -60.7313 19.4147);
+  --color-emerald-600: lab(55.0481% -49.9246 15.93);
+  --color-teal-400: lab(76.0109% -53.3483 -2.27906);
+  --color-teal-600: lab(55.0223% -41.0774 -3.90277);
+  --color-cyan-400: lab(76.6045% -40.9406 -29.6231);
+  --color-cyan-600: lab(55.1767% -26.7496 -30.5139);
+  --color-sky-400: lab(70.687% -23.6078 -45.9483);
+  --color-sky-600: lab(51.7754% -11.4712 -49.8349);
+  --color-blue-50: lab(96.492% -1.14644 -5.11479);
+  --color-blue-200: lab(86.15% -4.04379 -21.0797);
+  --color-blue-400: lab(65.0361% -1.42065 -56.9802);
+  --color-blue-500: lab(54.1736% 13.3369 -74.6839);
+  --color-blue-600: lab(44.0605% 29.0279 -86.0352);
+  --color-blue-900: lab(26.1542% 15.7545 -51.5504);
+  --color-gray-50: lab(98.2596% -.247031 -.706708);
+  --color-gray-100: lab(96.1596% -.0823438 -1.13575);
+  --color-gray-200: lab(91.6229% -.159115 -2.26791);
+  --color-gray-300: lab(85.1236% -.612259 -3.7138);
+  --color-gray-400: lab(65.9269% -.832707 -8.17473);
+  --color-gray-500: lab(47.7841% -.393182 -10.0268);
+  --color-gray-600: lab(35.6337% -1.58697 -10.8425);
+  --color-gray-700: lab(27.1134% -.956401 -12.3224);
+  --color-gray-800: lab(16.1051% -1.18239 -11.7533);
+  --color-gray-900: lab(8.11897% .811279 -12.254);
+  --color-gray-950: lab(1.90334% .278696 -5.48866);
+}
+
+/* Inherited from ancestor level 6 (regular) */
+*, :after, :before, ::backdrop {
+  box-sizing: border-box;
+  border: 0 solid;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border-top-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 0px;
+  border-left-width: 0px;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-top-color: initial;
+  border-right-color: initial;
+  border-bottom-color: initial;
+  border-left-color: initial;
+  border-image-source: initial;
+  border-image-slice: initial;
+  border-image-width: initial;
+  border-image-outset: initial;
+  border-image-repeat: initial;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+}
+
+/* Inherited from ancestor level 6 (regular) */
+html, :host {
+  -webkit-text-size-adjust: 100%;
+  tab-size: 4;
+  line-height: 1.5;
+  font-family: var(--default-font-family, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji");
+  font-feature-settings: var(--default-font-feature-settings, normal);
+  font-variation-settings: var(--default-font-variation-settings, normal);
+  -webkit-tap-highlight-color: transparent;
+  text-size-adjust: 100%;
+  tab-size: 4;
+  line-height: 1.5;
+  font-family: var(--default-font-family, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji");
+  font-feature-settings: var(--default-font-feature-settings, normal);
+  font-variation-settings: var(--default-font-variation-settings, normal);
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Inherited from ancestor level 6 (regular) */
+.scroll-smooth {
+  scroll-behavior: smooth;
+  scroll-behavior: smooth;
+}
+
+/* Inherited from ancestor level 6 (regular) */
+* {
+  transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+  transition-duration: var(--tw-duration, var(--default-transition-duration));
+  --tw-duration: .3s;
+  transition-duration: .3s;
+  transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+  --tw-duration: .3s;
+  transition-duration: 0.3s;
+}
+
+/* Inherited from ancestor level 6 (regular) */
+html {
+  scroll-behavior: smooth;
+  scroll-behavior: smooth;
+}
+
+/* Inherited from ancestor level 6 (regular) */
+html {
+  background-color: var(--color-white);
+  background-color: var(--color-white);
+}
