@@ -97,7 +97,7 @@ export default function Contact() {
             <form onSubmit={handleSubmit} className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-8">
               <div className="mb-6">
                 <label htmlFor="name" className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
-                  Nom complet *
+                  Nom *
                 </label>
                 <input
                   type="text"

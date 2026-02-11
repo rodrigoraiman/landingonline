@@ -1,21 +1,10 @@
+
 import Image from 'next/image';
+import Carousel from './Carousel';
 
 export default function Hero() {
   return (
     <section className="relative bg-gradient-to-br from-green-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 pt-20 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      {/* Background photo */}
-      <div className="absolute inset-0 w-full h-full z-0">
-        <Image
-          src="/images/DSC02402.webp"
-          alt="Jardin Clair Hero"
-          fill
-          style={{ objectFit: 'cover', objectPosition: 'center' }}
-          className="opacity-70 pointer-events-none select-none transition-opacity duration-500"
-          priority
-        />
-        {/* Overlay para oscurecer y dar opacidad uniforme */}
-        <div className="absolute inset-0 bg-white/70 dark:bg-black/40" />
-      </div>
       {/* Background decoration quitada para evitar manchas */}
 
       <div className="relative max-w-7xl mx-auto text-center">
@@ -75,6 +64,19 @@ export default function Hero() {
           >
             Voir nos services
           </button>
+        </div>
+        {/* Espacio extra debajo de los botones */}
+        <div className="h-8" />
+        {/* Carousel Hero (debajo de los botones) */}
+        <div className="relative z-10 max-w-3xl mx-auto mb-8">
+          <Carousel images={[
+            '/images/IMG_9255.jpg',
+            '/images/IMG_9289.jpg',
+            '/images/DSC05105.jpg',
+            '/images/IMG_9295.jpg',
+            '/images/IMG_9296.jpg',
+            '/images/IMG_9308.jpg',
+          ]} />
         </div>
       </div>
     </section>

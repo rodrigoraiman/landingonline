@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import DarkModeToggle from './DarkModeToggle';
+import Logo from './Logo';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,8 +22,8 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <a href="#" className="text-2xl font-bold text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300 transition-colors">
-              Terre Paysage
+            <a href="#" className="flex items-center space-x-2 hover:opacity-80 transition-opacity">
+              <Logo className="h-10 w-auto" />
             </a>
           </div>
 
