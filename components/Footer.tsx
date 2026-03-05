@@ -60,10 +60,10 @@ export default function Footer() {
             </div>
             <div className="mt-4 md:mt-0 flex items-center gap-2">
               <a
-                href="https://www.instagram.com/jardinclair" // Remplacez par le vrai lien si besoin
+                href="https://www.instagram.com/terrepaysage" // Remplacez par le vrai lien si besoin
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Instagram Jardin Clair"
+                aria-label="Instagram Terre Paysage"
                 className="hover:text-green-400 transition-colors text-2xl"
               >
                 <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">

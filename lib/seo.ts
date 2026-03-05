@@ -1,18 +1,18 @@
 export const siteMetadata = {
-  title: 'Jardin Clair - Entretien de Jardins Professionnel',
+  title: 'Terre Paysage - Entretien de Jardins Professionnel',
   description: 'Entretien complet de jardins, tonte, taille de haies, désherbage, nettoyage terrasses. Devis gratuit et interventions rapides.',
   keywords: 'entretien jardin, tonte, taille haies, nettoyage terrasse, désherbant, service paysage',
-  ogImage: 'https://jardin-clair.fr/og-image.jpg',
-  url: 'https://jardin-clair.fr',
+  ogImage: 'https://terrepaysage.com/og-image.jpg',
+  url: 'https://terrepaysage.com',
 };
 
 export function generateLocalBusinessSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
-    name: 'Jardin Clair',
+    name: 'Terre Paysage',
     description: 'Service professionnel d\'entretien de jardins',
-    url: 'https://jardin-clair.fr',
+    url: 'https://terrepaysage.com',
     telephone: '+33 4 XX XX XX XX',
     email: 'contact@jardinclair.fr',
     address: {
@@ -24,10 +24,10 @@ export function generateLocalBusinessSchema() {
       '@type': 'City',
       name: 'Région Rhône-Alpes',
     },
-    image: 'https://jardin-clair.fr/og-image.jpg',
+    image: 'https://terrepaysage.com/og-image.jpg',
     priceRange: '€€',
     sameAs: [
-      'https://www.facebook.com/jardinclair',
+      'https://www.facebook.com/terrepaysage',
     ],
   };
 }

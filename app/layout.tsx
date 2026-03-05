@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     title: siteMetadata.title,
     description: siteMetadata.description,
     url: siteMetadata.url,
-    siteName: 'Jardin Clair',
+    siteName: 'Terre Paysage',
     images: [
       {
         url: siteMetadata.ogImage,
