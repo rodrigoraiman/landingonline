@@ -7,7 +7,7 @@ export default function Logo({ className = "h-10 w-auto" }: { className?: string
       <div className="relative w-12 h-12 rounded-full shadow-md border-2 border-green-500 dark:border-green-400 overflow-hidden bg-white dark:bg-slate-800">
         <Image
           src="/images/logo.png"
-          alt="Terre Paysage Logo"
+          alt="Terre Viva Paysage Logo"
           width={48}
           height={48}
           className="w-full h-full object-cover rounded-full"

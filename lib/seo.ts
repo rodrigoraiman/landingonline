@@ -1,5 +1,5 @@
 export const siteMetadata = {
-  title: 'Terre Paysage - Entretien de Jardins Professionnel | Saint-Ismier, Grenoble',
+  title: 'Terre Viva Paysage - Entretien de Jardins Professionnel | Saint-Ismier, Grenoble',
   description: 'Entretien complet de jardins à Saint-Ismier, Biviers, Montbonnot et environs. Tonte, taille de haies, désherbage, nettoyage terrasses. Devis gratuit sous 24h. Interventions rapides et déchets verts inclus.',
   keywords: 'entretien jardin Saint-Ismier, jardinier Grenoble, tonte pelouse Biviers, taille haies Montbonnot, paysagiste Isère, nettoyage terrasse, désherbage professionnel, entretien espace vert',
   ogImage: 'https://terrepaysage.com/og-image.jpg',
@@ -11,7 +11,7 @@ export function generateLocalBusinessSchema() {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
     '@id': 'https://terrepaysage.com/#organization',
-    name: 'Terre Paysage',
+    name: 'Terre Viva Paysage',
     description: 'Service professionnel d\'entretien de jardins à Saint-Ismier et environs de Grenoble. Tonte, taille, désherbage, nettoyage terrasses.',
     url: 'https://terrepaysage.com',
     telephone: '+33 6 65 19 27 66',

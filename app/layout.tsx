@@ -17,13 +17,13 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://terrepaysage.com'),
   title: {
     default: siteMetadata.title,
-    template: '%s | Terre Paysage',
+    template: '%s | Terre Viva Paysage',
   },
   description: siteMetadata.description,
   keywords: siteMetadata.keywords,
-  authors: [{ name: 'Terre Paysage' }],
-  creator: 'Terre Paysage',
-  publisher: 'Terre Paysage',
+  authors: [{ name: 'Terre Viva Paysage' }],
+  creator: 'Terre Viva Paysage',
+  publisher: 'Terre Viva Paysage',
   formatDetection: {
     email: true,
     address: true,
@@ -33,13 +33,13 @@ export const metadata: Metadata = {
     title: siteMetadata.title,
     description: siteMetadata.description,
     url: siteMetadata.url,
-    siteName: 'Terre Paysage',
+    siteName: 'Terre Viva Paysage',
     images: [
       {
         url: siteMetadata.ogImage,
         width: 1200,
         height: 630,
-        alt: 'Terre Paysage - Entretien de Jardins Professionnel',
+        alt: 'Terre Viva Paysage - Entretien de Jardins Professionnel',
       },
     ],
     locale: 'fr_FR',

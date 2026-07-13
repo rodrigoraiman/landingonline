@@ -70,12 +70,11 @@ export default function Hero() {
         {/* Carousel Hero (debajo de los botones) */}
         <div className="relative z-10 max-w-3xl mx-auto mb-8">
           <Carousel images={[
-            '/images/IMG_9255.jpg',
-            '/images/IMG_9289.jpg',
             '/images/DSC05105.jpg',
             '/images/IMG_9295.jpg',
             '/images/IMG_9296.jpg',
-            '/images/IMG_9308.jpg',
+            '/images/proyecto1.jpg',
+            '/images/proyecto2.png',
           ]} />
         </div>
       </div>

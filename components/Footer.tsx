@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Brand */}
           <div>
-            <h3 className="text-2xl font-bold text-white mb-4">Terre Paysage</h3>
+            <h3 className="text-2xl font-bold text-white mb-4">Terre Viva Paysage</h3>
             <p className="text-sm leading-relaxed">
               Entretien professionnel de jardins depuis 2024. Qualit&eacute;, ponctualit&eacute; et respect de l&rsquo;environnement.
             </p>
@@ -51,7 +51,7 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="text-center text-xs text-gray-500">
               <p className="mb-2">
-                © {currentYear} Terre Paysage. Tous droits réservés. Les devis sont gratuits et sans engagement. 
+                © {currentYear} Terre Viva Paysage. Tous droits réservés. Les devis sont gratuits et sans engagement. 
                 Tarifs variables selon surface et accès du jardin.
               </p>
               <p>
@@ -63,7 +63,7 @@ export default function Footer() {
                 href="https://www.instagram.com/terrepaysage" // Remplacez par le vrai lien si besoin
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Instagram Terre Paysage"
+                aria-label="Instagram Terre Viva Paysage"
                 className="hover:text-green-400 transition-colors text-2xl"
               >
                 <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">

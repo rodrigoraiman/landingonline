@@ -4,7 +4,7 @@ export default function Testimonials() {
       id: 1,
       name: 'Camille Martin',
       city: 'Biviers',
-      text: 'Service professionnel et ponctuel. Mon jardin n\'a jamais eu l\'air aussi beau. Je recommande vivement Terre Paysage !',
+      text: 'Service professionnel et ponctuel. Mon jardin n\'a jamais eu l\'air aussi beau. Je recommande vivement Terre Viva Paysage !',
       rating: 5,
     },
     {
