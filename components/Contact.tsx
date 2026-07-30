@@ -47,10 +47,10 @@ export default function Contact() {
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            Demander un devis
+            Vous avez un projet d'entretien de jardin ?
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-400">
-            Contactez-nous dès aujourd&rsquo;hui pour discuter de vos besoins
+            Laissez-nous vos coordonnées et nous vous recontacterons rapidement pour échanger sur vos besoins.
           </p>
         </div>
 
