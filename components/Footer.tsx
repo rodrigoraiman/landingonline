@@ -55,12 +55,12 @@ export default function Footer() {
                 Tarifs variables selon surface et accès du jardin.
               </p>
               <p>
-                Siège social : Région Rhône-Alpes | SIRET : [À compléter] | Contact : contact@terrepaysage.fr
+                Siège social : Région Rhône-Alpes | SIRET : 10234159100018 | Contact : contact@terrepaysage.fr
               </p>
             </div>
             <div className="mt-4 md:mt-0 flex items-center gap-2">
               <a
-                href="https://www.instagram.com/terrepaysage" // Remplacez par le vrai lien si besoin
+                href="https://www.instagram.com/rodraiman" // Remplacez par le vrai lien si besoin
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram Terre Viva Paysage"
