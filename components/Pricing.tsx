@@ -16,7 +16,7 @@ export default function Pricing() {
       id: 1,
       name: 'Ponctuel',
       description: 'Pour une intervention unique',
-      price: 'à partir de 49€',
+      price: 'à partir de 69€',
       period: 'par intervention',
       features: [
         'Tonte ou taille simple',

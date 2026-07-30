@@ -87,7 +87,7 @@ export default function Contact() {
                   </svg>
                   Zone de service
                 </h3>
-                <p className="text-gray-600 dark:text-gray-400">Saint-Ismier, Bivier, Montbonnot, Bernin et proches environs</p>
+                <p className="text-gray-600 dark:text-gray-400">Saint-Ismier, Biviers, Montbonnot-Saint-Martin, Meylan, Bernin, Crolles, La Tronche, Corenc, Domène, Le Versoud, Grenoble et l'ensemble du Grésivaudan.</p>
               </div>
             </div>
           </div>
