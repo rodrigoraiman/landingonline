@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import Link from 'next/link';
 
 type Step = {
   number: number;
@@ -12,7 +13,35 @@ type Props = {
   onStepClick?: (stepNumber: number) => void;
 };
 
+const localPages = [
+  { slug: 'jardinier-saint-ismier', label: 'Saint-Ismier' },
+  { slug: 'entretien-jardin-meylan', label: 'Meylan' },
+  { slug: 'jardinier-montbonnot-saint-martin', label: 'Montbonnot-Saint-Martin' },
+  { slug: 'taille-haie-crolles', label: 'Crolles' },
+  { slug: 'debroussaillage-bernin', label: 'Bernin' },
+  { slug: 'jardinier-biviers', label: 'Biviers' },
+  { slug: 'entretien-jardin-grenoble', label: 'Grenoble' },
+];
+
 export default function Process({ steps: propsSteps, currentStep, onStepClick }: Props) {
+  useEffect(() => {
+    const basePath = '/logo.png'; // asegúrate que exista en /public/logo.png
+    const logoPath = `${basePath}?v=${Date.now()}`;
+
+    // borra favicons previos para evitar que el navegador siga usando el antiguo
+    document
+      .querySelectorAll("link[rel='icon'], link[rel='shortcut icon'], link[rel='apple-touch-icon']")
+      .forEach((el) => el.parentNode?.removeChild(el));
+
+    ['icon', 'shortcut icon', 'apple-touch-icon'].forEach((rel) => {
+      const link = document.createElement('link');
+      link.rel = rel;
+      link.type = 'image/png';
+      link.href = logoPath;
+      document.head.appendChild(link);
+    });
+  }, []);
+
   const defaultSteps: Step[] = [
     {
       number: 1,
@@ -99,6 +128,21 @@ export default function Process({ steps: propsSteps, currentStep, onStepClick }:
             );
           })}
         </ol>
+
+        <div className="mt-14 text-center">
+          <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Zones locales</h3>
+          <div className="flex flex-wrap gap-3 justify-center">
+            {localPages.map((page) => (
+              <Link
+                key={page.slug}
+                href={`/${page.slug}`}
+                className="px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 hover:bg-green-100 dark:hover:bg-green-900 transition-colors"
+              >
+                {page.label}
+              </Link>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

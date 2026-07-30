@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useState } from 'react';
 import DarkModeToggle from './DarkModeToggle';
 import Logo from './Logo';
@@ -14,6 +15,17 @@ export default function Navbar() {
     { href: '#pricing', label: 'Tarifs' },
     { href: '#faq', label: 'FAQ' },
     { href: '#contact', label: 'Contact' },
+  ];
+
+  const localLinks = [
+    { href: '/jardinier-saint-ismier', label: 'Jardinier Saint-Ismier' },
+    { href: '/entretien-jardin-meylan', label: 'Entretien jardin Meylan' },
+    { href: '/jardinier-montbonnot-saint-martin', label: 'Jardinier Montbonnot-Saint-Martin' },
+    { href: '/jardinier-biviers', label: 'Jardinier Biviers' },
+    { href: '/debroussaillage-bernin', label: 'Débroussaillage Bernin' },
+    { href: '/taille-haie-crolles', label: 'Taille haie Crolles' },
+    { href: '/entretien-jardin-grenoble', label: 'Entretien jardin Grenoble' },
+    { href: '/jardinier-corenc', label: 'Jardinier Corenc' },
   ];
 
   return (
@@ -47,6 +59,23 @@ export default function Navbar() {
                 {link.label}
               </a>
             ))}
+
+            <details className="relative">
+              <summary className="list-none cursor-pointer text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 font-medium text-sm px-2 py-1 rounded focus:outline-none">
+                Nos secteurs
+              </summary>
+              <div className="absolute right-0 mt-2 w-64 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg p-2 space-y-1">
+                {localLinks.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="block px-3 py-2 rounded-md text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            </details>
           </div>
 
           {/* Right Section */}
@@ -107,6 +136,23 @@ export default function Navbar() {
                 {link.label}
               </a>
             ))}
+
+            <div className="pt-2 mt-2 border-t border-gray-200 dark:border-gray-700">
+              <p className="px-4 py-1 text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                Nos secteurs d’intervention
+              </p>
+              {localLinks.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+
             <button className="w-full bg-green-600 dark:bg-green-500 hover:bg-green-700 dark:hover:bg-green-600 text-white font-semibold px-4 py-2 rounded-lg transition-colors mt-2">
               Devis gratuit
             </button>
