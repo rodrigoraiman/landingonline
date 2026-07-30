@@ -16,6 +16,7 @@ const LOCAL_PAGES = {
 } as const;
 
 type LocalSlug = keyof typeof LOCAL_PAGES;
+export const LOCAL_PAGE_SLUGS = Object.keys(LOCAL_PAGES) as LocalSlug[];
 
 const sectors = [
   { href: '/jardinier-saint-ismier', label: 'Saint-Ismier' },

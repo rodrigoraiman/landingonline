@@ -1,38 +1,23 @@
-import { MetadataRoute } from 'next';
+import type { MetadataRoute } from 'next';
+import { LOCAL_PAGE_SLUGS } from './[localPage]/page';
+
+const BASE_URL = 'https://terrepaysage.com';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://terrepaysage.com';
-  
+  const lastModified = new Date();
+
   return [
     {
-      url: baseUrl,
-      lastModified: new Date(),
+      url: `${BASE_URL}/`,
+      lastModified,
       changeFrequency: 'weekly',
       priority: 1,
     },
-    {
-      url: `${baseUrl}/#services`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
+    ...LOCAL_PAGE_SLUGS.map((slug) => ({
+      url: `${BASE_URL}/${slug}`,
+      lastModified,
+      changeFrequency: 'weekly' as const,
       priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/#pricing`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/#contact`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/#faq`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
+    })),
   ];
 }
