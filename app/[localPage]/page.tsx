@@ -4,19 +4,76 @@ import { notFound } from 'next/navigation';
 
 const BASE_URL = 'https://terrepaysage.com';
 
-const LOCAL_PAGES = {
-  'jardinier-saint-ismier': { city: 'Saint-Ismier', h1: 'Jardinier à Saint-Ismier' },
-  'entretien-jardin-meylan': { city: 'Meylan', h1: 'Jardinier à Meylan' },
-  'jardinier-montbonnot-saint-martin': { city: 'Montbonnot-Saint-Martin', h1: 'Jardinier à Montbonnot-Saint-Martin' },
-  'taille-haie-crolles': { city: 'Crolles', h1: 'Jardinier à Crolles' },
-  'debroussaillage-bernin': { city: 'Bernin', h1: 'Jardinier à Bernin' },
-  'jardinier-biviers': { city: 'Biviers', h1: 'Jardinier à Biviers' },
-  'entretien-jardin-grenoble': { city: 'Grenoble', h1: 'Jardinier à Grenoble' },
-  'jardinier-corenc': { city: 'Corenc', h1: 'Jardinier à Corenc' },
+type LocalPageData = {
+  city: string;
+  h1: string;
+  primaryService: string;
+  targetQuery: string;
+};
+
+const LOCAL_PAGES: Record<string, LocalPageData> = {
+  'jardinier-saint-ismier': {
+    city: 'Saint-Ismier',
+    h1: 'Jardinier à Saint-Ismier',
+    primaryService: 'Entretien de jardin',
+    targetQuery: 'jardinier Saint-Ismier',
+  },
+  'entretien-jardin-meylan': {
+    city: 'Meylan',
+    h1: 'Jardinier à Meylan',
+    primaryService: 'Entretien de jardin',
+    targetQuery: 'entretien jardin Meylan',
+  },
+  'jardinier-montbonnot-saint-martin': {
+    city: 'Montbonnot-Saint-Martin',
+    h1: 'Jardinier à Montbonnot-Saint-Martin',
+    primaryService: 'Entretien de jardin',
+    targetQuery: 'entreprise entretien jardin Montbonnot-Saint-Martin',
+  },
+  'taille-haie-crolles': {
+    city: 'Crolles',
+    h1: 'Jardinier à Crolles',
+    primaryService: 'Taille de haies',
+    targetQuery: 'taille de haie Crolles',
+  },
+  'debroussaillage-bernin': {
+    city: 'Bernin',
+    h1: 'Jardinier à Bernin',
+    primaryService: 'Débroussaillage',
+    targetQuery: 'débroussaillage Bernin',
+  },
+  'jardinier-biviers': {
+    city: 'Biviers',
+    h1: 'Jardinier à Biviers',
+    primaryService: 'Entretien de jardin',
+    targetQuery: 'jardinier Biviers',
+  },
+  'entretien-jardin-grenoble': {
+    city: 'Grenoble',
+    h1: 'Jardinier à Grenoble',
+    primaryService: 'Entretien de jardin',
+    targetQuery: 'entretien jardin Grenoble',
+  },
+  'jardinier-corenc': {
+    city: 'Corenc',
+    h1: 'Jardinier à Corenc',
+    primaryService: 'Entretien de jardin',
+    targetQuery: 'jardinier Corenc',
+  },
 } as const;
 
 type LocalSlug = keyof typeof LOCAL_PAGES;
 export const LOCAL_PAGE_SLUGS = Object.keys(LOCAL_PAGES) as LocalSlug[];
+
+const buildSeoMeta = (page: LocalPageData, slug: string) => {
+  const title = `${page.primaryService} à ${page.city} | Terre Paysage`;
+  const description = `${page.targetQuery} : ${page.primaryService.toLowerCase()} par une entreprise locale. Tonte, taille, débroussaillage, élagage et évacuation des déchets verts. Devis gratuit et intervention rapide.`;
+  const canonical = `${BASE_URL}/${slug}`;
+  return { title, description, canonical };
+};
+
+const normalizeLocalSlug = (value: string) =>
+  decodeURIComponent(value).trim().toLowerCase().replace(/\/+$/, '');
 
 const sectors = [
   { href: '/jardinier-saint-ismier', label: 'Saint-Ismier' },
@@ -39,14 +96,25 @@ export async function generateMetadata({
   params: Promise<{ localPage: string }>;
 }): Promise<Metadata> {
   const { localPage } = await params;
-  const page = LOCAL_PAGES[localPage as LocalSlug];
+  const slug = normalizeLocalSlug(localPage);
+  const page = LOCAL_PAGES[slug as LocalSlug];
   if (!page) return { title: 'Page locale' };
 
+  const seo = buildSeoMeta(page, slug);
+
   return {
-    title: `${page.h1} | Terre Paysage`,
-    description: `Entreprise locale à ${page.city} pour tonte, taille de haies, débroussaillage, élagage et entretien de jardin. Devis gratuit.`,
+    title: seo.title,
+    description: seo.description,
     alternates: {
-      canonical: `${BASE_URL}/${localPage}`,
+      canonical: seo.canonical,
+    },
+    openGraph: {
+      title: seo.title,
+      description: seo.description,
+      url: seo.canonical,
+      siteName: 'Terre Paysage',
+      type: 'website',
+      locale: 'fr_FR',
     },
   };
 }
@@ -57,10 +125,11 @@ export default async function LocalPage({
   params: Promise<{ localPage: string }>;
 }) {
   const { localPage } = await params;
-  const page = LOCAL_PAGES[localPage as LocalSlug];
+  const slug = normalizeLocalSlug(localPage);
+  const page = LOCAL_PAGES[slug as LocalSlug];
   if (!page) notFound();
 
-  const intro = `Terre Paysage intervient régulièrement à ${page.city} pour l’entretien de jardins privés, avec une approche adaptée à chaque terrain et à chaque saison. Nous travaillons aussi bien sur des petits jardins urbains que sur des espaces extérieurs plus étendus, en tenant compte du type de végétation, de la fréquence d’entretien souhaitée et de vos priorités esthétiques. Nos prestations couvrent la tonte, la taille de haies, le débroussaillage, l’élagage de petits arbres, le nettoyage d’allées et l’évacuation complète des déchets verts. Vous bénéficiez d’un interlocuteur local, d’une intervention rapide et d’un travail soigné, avec des finitions nettes et un jardin plus facile à entretenir dans la durée. Que vous recherchiez une intervention ponctuelle ou un entretien annuel, nous proposons un devis gratuit et transparent. Notre objectif est simple: vous garantir un extérieur propre, équilibré et agréable toute l’année, sans contrainte de gestion pour vous.`;
+  const intro = `Terre Paysage intervient régulièrement à ${page.city} pour ${page.primaryService.toLowerCase()} des jardins privés, avec une approche adaptée à chaque terrain et à chaque saison. Nous travaillons aussi bien sur des petits jardins urbains que sur des espaces extérieurs plus étendus, en tenant compte du type de végétation, de la fréquence d’entretien souhaitée et de vos priorités esthétiques. Nos prestations couvrent la tonte, la taille de haies, le débroussaillage, l’élagage de petits arbres, le nettoyage d’allées et l’évacuation complète des déchets verts. Vous bénéficiez d’un interlocuteur local, d’une intervention rapide et d’un travail soigné, avec des finitions nettes et un jardin plus facile à entretenir dans la durée. Que vous recherchiez une intervention ponctuelle ou un entretien annuel, nous proposons un devis gratuit et transparent. Notre objectif est simple: vous garantir un extérieur propre, équilibré et agréable toute l’année, sans contrainte de gestion pour vous.`;
 
   const faq = [
     {
@@ -82,8 +151,9 @@ export default async function LocalPage({
     '@type': 'LocalBusiness',
     name: 'Terre Paysage',
     areaServed: page.city,
-    url: `${BASE_URL}/${localPage}`,
+    url: `${BASE_URL}/${slug}`,
     serviceType: [
+      page.primaryService,
       'Tonte',
       'Taille de haies',
       'Débroussaillage',
