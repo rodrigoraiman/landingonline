@@ -129,7 +129,7 @@ export default function Process({ steps: propsSteps, currentStep, onStepClick }:
           })}
         </ol>
 
-        <div className="mt-14 text-center">
+        <div id="local-zones" className="mt-14 text-center">
           <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Zones locales</h3>
           <div className="flex flex-wrap gap-3 justify-center">
             {localPages.map((page) => (

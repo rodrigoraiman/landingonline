@@ -1,5 +1,4 @@
 "use client";
-import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import Services from '@/components/Services';
 import Process from '@/components/Process';
@@ -11,10 +10,11 @@ import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import CookieBanner from '@/components/CookieBanner';
 
+// Navbar se renderiza globalmente desde app/layout.tsx
+
 export default function Home() {
   return (
     <>
-      <Navbar />
       <Hero />
       <Services />
       <Process />

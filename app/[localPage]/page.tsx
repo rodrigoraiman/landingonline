@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import RelatedLocations from '@/components/RelatedLocations';
 
 const BASE_URL = 'https://terrepaysage.com';
 const LOCAL_BUSINESS_ID = `${BASE_URL}#localbusiness`;
@@ -10,6 +11,7 @@ type LocalPageData = {
   h1: string;
   primaryService: string;
   targetQuery: string;
+  related: string[];
 };
 
 const LOCAL_PAGES: Record<string, LocalPageData> = {
@@ -18,48 +20,56 @@ const LOCAL_PAGES: Record<string, LocalPageData> = {
     h1: 'Jardinier à Saint-Ismier',
     primaryService: 'Entretien de jardin',
     targetQuery: 'jardinier Saint-Ismier',
+    related: ['entretien-jardin-meylan', 'jardinier-montbonnot-saint-martin', 'jardinier-biviers', 'jardinier-corenc'],
   },
   'entretien-jardin-meylan': {
     city: 'Meylan',
     h1: 'Jardinier à Meylan',
     primaryService: 'Entretien de jardin',
     targetQuery: 'entretien jardin Meylan',
+    related: ['jardinier-saint-ismier', 'jardinier-montbonnot-saint-martin', 'entretien-jardin-grenoble', 'jardinier-corenc'],
   },
   'jardinier-montbonnot-saint-martin': {
     city: 'Montbonnot-Saint-Martin',
     h1: 'Jardinier à Montbonnot-Saint-Martin',
     primaryService: 'Entretien de jardin',
     targetQuery: 'entreprise entretien jardin Montbonnot-Saint-Martin',
+    related: ['jardinier-saint-ismier', 'entretien-jardin-meylan', 'taille-haie-crolles', 'debroussaillage-bernin'],
   },
   'taille-haie-crolles': {
     city: 'Crolles',
     h1: 'Jardinier à Crolles',
     primaryService: 'Taille de haies',
     targetQuery: 'taille de haie Crolles',
+    related: ['debroussaillage-bernin', 'jardinier-montbonnot-saint-martin', 'jardinier-saint-ismier'],
   },
   'debroussaillage-bernin': {
     city: 'Bernin',
     h1: 'Jardinier à Bernin',
     primaryService: 'Débroussaillage',
     targetQuery: 'débroussaillage Bernin',
+    related: ['taille-haie-crolles', 'jardinier-montbonnot-saint-martin', 'jardinier-saint-ismier'],
   },
   'jardinier-biviers': {
     city: 'Biviers',
     h1: 'Jardinier à Biviers',
     primaryService: 'Entretien de jardin',
     targetQuery: 'jardinier Biviers',
+    related: ['jardinier-saint-ismier', 'entretien-jardin-meylan', 'jardinier-corenc', 'entretien-jardin-grenoble'],
   },
   'entretien-jardin-grenoble': {
     city: 'Grenoble',
     h1: 'Jardinier à Grenoble',
     primaryService: 'Entretien de jardin',
     targetQuery: 'entretien jardin Grenoble',
+    related: ['entretien-jardin-meylan', 'jardinier-corenc', 'jardinier-biviers', 'jardinier-montbonnot-saint-martin'],
   },
   'jardinier-corenc': {
     city: 'Corenc',
     h1: 'Jardinier à Corenc',
     primaryService: 'Entretien de jardin',
     targetQuery: 'jardinier Corenc',
+    related: ['entretien-jardin-meylan', 'entretien-jardin-grenoble', 'jardinier-saint-ismier', 'jardinier-biviers'],
   },
 } as const;
 
@@ -265,6 +275,12 @@ export default async function LocalPage({
             ))}
           </div>
         </section>
+
+        <RelatedLocations
+          relatedSlugs={page.related}
+          currentSlug={slug}
+          localPages={LOCAL_PAGES}
+        />
       </div>
     </main>
   );

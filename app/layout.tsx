@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
-import { siteMetadata, generateLocalBusinessSchema, generateFAQSchema } from '@/lib/seo';
+import { siteMetadata } from '@/lib/seo';
+import Navbar from '@/components/Navbar';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -119,6 +120,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
         />
+        <Navbar />
         {children}
         {/* Banner de cookies eliminado del layout server */}
       </body>

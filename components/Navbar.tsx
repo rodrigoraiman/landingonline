@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { useState } from 'react';
 import DarkModeToggle from './DarkModeToggle';
 import Logo from './Logo';
@@ -18,14 +17,14 @@ export default function Navbar() {
   ];
 
   const localLinks = [
-    { href: '/jardinier-saint-ismier', label: 'Jardinier Saint-Ismier' },
-    { href: '/entretien-jardin-meylan', label: 'Entretien jardin Meylan' },
-    { href: '/jardinier-montbonnot-saint-martin', label: 'Jardinier Montbonnot-Saint-Martin' },
-    { href: '/jardinier-biviers', label: 'Jardinier Biviers' },
-    { href: '/debroussaillage-bernin', label: 'Débroussaillage Bernin' },
-    { href: '/taille-haie-crolles', label: 'Taille haie Crolles' },
-    { href: '/entretien-jardin-grenoble', label: 'Entretien jardin Grenoble' },
-    { href: '/jardinier-corenc', label: 'Jardinier Corenc' },
+    { href: '/jardinier-saint-ismier', label: 'Saint-Ismier' },
+    { href: '/entretien-jardin-meylan', label: 'Meylan' },
+    { href: '/jardinier-montbonnot-saint-martin', label: 'Montbonnot-Saint-Martin' },
+    { href: '/jardinier-biviers', label: 'Biviers' },
+    { href: '/debroussaillage-bernin', label: 'Bernin' },
+    { href: '/taille-haie-crolles', label: 'Crolles' },
+    { href: '/entretien-jardin-grenoble', label: 'Grenoble' },
+    { href: '/jardinier-corenc', label: 'Corenc' },
   ];
 
   return (
@@ -66,13 +65,13 @@ export default function Navbar() {
               </summary>
               <div className="absolute right-0 mt-2 w-64 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg p-2 space-y-1">
                 {localLinks.map((item) => (
-                  <Link
+                  <a
                     key={item.href}
                     href={item.href}
                     className="block px-3 py-2 rounded-md text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
                   >
                     {item.label}
-                  </Link>
+                  </a>
                 ))}
               </div>
             </details>
@@ -91,7 +90,7 @@ export default function Navbar() {
             >
               Devis gratuit
             </button>
-            
+
             <DarkModeToggle />
 
             {/* Mobile Menu Button */}
@@ -142,14 +141,14 @@ export default function Navbar() {
                 Nos secteurs d’intervention
               </p>
               {localLinks.map((item) => (
-                <Link
+                <a
                   key={item.href}
                   href={item.href}
                   className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.label}
-                </Link>
+                </a>
               ))}
             </div>
 
