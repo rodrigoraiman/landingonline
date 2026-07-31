@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 const BASE_URL = 'https://terrepaysage.com';
+const LOCAL_BUSINESS_ID = `${BASE_URL}#localbusiness`;
 
 type LocalPageData = {
   city: string;
@@ -119,6 +120,35 @@ export async function generateMetadata({
   };
 }
 
+const buildServiceJsonLd = (page: LocalPageData, slug: string) => ({
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: `${page.primaryService} à ${page.city}`,
+  serviceType: page.primaryService,
+  areaServed: { '@type': 'City', name: page.city },
+  provider: { '@id': LOCAL_BUSINESS_ID },
+  url: `${BASE_URL}/${slug}`,
+});
+
+const buildBreadcrumbJsonLd = (page: LocalPageData, slug: string) => ({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Accueil',
+      item: BASE_URL,
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: page.h1,
+      item: `${BASE_URL}/${slug}`,
+    },
+  ],
+});
+
 export default async function LocalPage({
   params,
 }: {
@@ -146,22 +176,8 @@ export default async function LocalPage({
     },
   ];
 
-  const localBusinessJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    name: 'Terre Paysage',
-    areaServed: page.city,
-    url: `${BASE_URL}/${slug}`,
-    serviceType: [
-      page.primaryService,
-      'Tonte',
-      'Taille de haies',
-      'Débroussaillage',
-      'Élagage de petits arbres',
-      "Nettoyage d'allées",
-      'Évacuation des déchets verts',
-    ],
-  };
+  const serviceJsonLd = buildServiceJsonLd(page, slug);
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd(page, slug);
 
   const faqJsonLd = {
     '@context': 'https://schema.org',
@@ -175,8 +191,18 @@ export default async function LocalPage({
 
   return (
     <main className="py-16 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900 min-h-screen">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
 
       <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-6">{page.h1}</h1>

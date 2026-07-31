@@ -72,45 +72,52 @@ export const metadata: Metadata = {
   },
 };
 
+const BASE_URL = 'https://terrepaysage.com';
+const LOCAL_BUSINESS_ID = `${BASE_URL}#localbusiness`;
+
+const localBusinessJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': LOCAL_BUSINESS_ID,
+  name: 'Terre Paysage',
+  url: BASE_URL,
+  image: `${BASE_URL}/logo.png`,
+  logo: `${BASE_URL}/logo.png`,
+  areaServed: [
+    'Saint-Ismier',
+    'Meylan',
+    'Montbonnot-Saint-Martin',
+    'Crolles',
+    'Bernin',
+    'Biviers',
+    'Grenoble',
+    'Corenc',
+  ],
+  serviceType: [
+    'Entretien de jardin',
+    'Tonte',
+    'Taille de haies',
+    'Débroussaillage',
+    'Élagage de petits arbres',
+    "Nettoyage d'allées",
+    'Évacuation des déchets verts',
+  ],
+};
+
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
-  const localBusinessSchema = generateLocalBusinessSchema();
-  const faqSchema = generateFAQSchema();
-
+}) {
   return (
-    <html lang="fr" className="scroll-smooth">
-      <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-        />
-        {/* Google Analytics */}
-        {process.env.NEXT_PUBLIC_GA_ID && (
-          <>
-            <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}></script>
-            <script
-              dangerouslySetInnerHTML={{
-                __html: `
-                  window.dataLayer = window.dataLayer || [];
-                  function gtag(){dataLayer.push(arguments);}
-                  gtag('js', new Date());
-                  gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
-                `,
-              }}
-            />
-          </>
-        )}
-      </head>
+    <html lang="fr">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
+        />
         {children}
         {/* Banner de cookies eliminado del layout server */}
       </body>
