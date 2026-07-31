@@ -83,6 +83,7 @@ const localBusinessJsonLd = {
   url: BASE_URL,
   image: `${BASE_URL}/logo.png`,
   logo: `${BASE_URL}/logo.png`,
+  telephone: "+33 6 65 19 27 66",
   areaServed: [
     'Saint-Ismier',
     'Meylan',
