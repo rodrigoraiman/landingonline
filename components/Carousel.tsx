@@ -7,9 +7,11 @@ import 'swiper/css/effect-fade';
 // ...existing code...
 export default function Carousel({ images }: { images?: string[] }) {
   const defaultImages = [
-    '/images/IMG_9258.jpg',
-    '/images/IMG_9259.jpg',
-    '/images/IMG_9260.jpg',
+    '/images/IMG_2136.jpg',
+    '/images/IMG_9255.jpg',
+    '/images/IMG_9295.jpg',
+    '/images/IMG_9296.jpg',
+    '/images/IMG_6407.jpg',
     '/images/proyecto1.jpg',
     '/images/proyecto2.png',
   ];
