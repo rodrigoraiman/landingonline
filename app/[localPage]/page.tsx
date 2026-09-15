@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import RelatedLocations from '@/components/RelatedLocations';
+import MeylanPage from '@/components/MeylanPage';
+import { meylanFaq, meylanPhotos, meylanSeo } from '@/lib/meylan';
 
 const BASE_URL = 'https://terrepaysage.com';
 const LOCAL_BUSINESS_ID = `${BASE_URL}#localbusiness`;
@@ -113,6 +115,24 @@ export async function generateMetadata({
 
   const seo = buildSeoMeta(page, slug);
 
+  if (slug === 'entretien-jardin-meylan') {
+    const photo = meylanPhotos[0];
+    return {
+      title: { absolute: meylanSeo.title },
+      description: meylanSeo.description,
+      alternates: { canonical: seo.canonical },
+      openGraph: {
+        ...meylanSeo,
+        url: seo.canonical,
+        siteName: 'Terre Viva Paysage',
+        type: 'website',
+        locale: 'fr_FR',
+        images: [{ url: photo.src, width: photo.width, height: photo.height, alt: photo.alt }],
+      },
+      twitter: { card: 'summary_large_image', ...meylanSeo, images: [photo.src] },
+    };
+  }
+
   return {
     title: seo.title,
     description: seo.description,
@@ -168,6 +188,25 @@ export default async function LocalPage({
   const slug = normalizeLocalSlug(localPage);
   const page = LOCAL_PAGES[slug as LocalSlug];
   if (!page) notFound();
+
+  if (slug === 'entretien-jardin-meylan') {
+    // Le prestataire est le LocalBusiness du layout, référencé par son @id.
+    // Un seul Service, un fil d’Ariane et une FAQ issue du contenu visible.
+    const structuredData = {
+      '@context': 'https://schema.org',
+      '@graph': [
+        { ...buildServiceJsonLd(page, slug), name: 'Entretien de jardin à Meylan', serviceType: ['Entretien de jardin', 'Taille de haies', 'Débroussaillage', 'Remise en état'] },
+        buildBreadcrumbJsonLd(page, slug),
+        { '@type': 'FAQPage', mainEntity: meylanFaq.map(({ q, a }) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) },
+      ],
+    };
+    return (
+      <>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, '\\u003c') }} />
+        <MeylanPage localPages={LOCAL_PAGES} />
+      </>
+    );
+  }
 
   const intro = `Terre Paysage intervient régulièrement à ${page.city} pour ${page.primaryService.toLowerCase()} des jardins privés, avec une approche adaptée à chaque terrain et à chaque saison. Nous travaillons aussi bien sur des petits jardins urbains que sur des espaces extérieurs plus étendus, en tenant compte du type de végétation, de la fréquence d’entretien souhaitée et de vos priorités esthétiques. Nos prestations couvrent la tonte, la taille de haies, le débroussaillage, l’élagage de petits arbres, le nettoyage d’allées et l’évacuation complète des déchets verts. Vous bénéficiez d’un interlocuteur local, d’une intervention rapide et d’un travail soigné, avec des finitions nettes et un jardin plus facile à entretenir dans la durée. Que vous recherchiez une intervention ponctuelle ou un entretien annuel, nous proposons un devis gratuit et transparent. Notre objectif est simple: vous garantir un extérieur propre, équilibré et agréable toute l’année, sans contrainte de gestion pour vous.`;
 

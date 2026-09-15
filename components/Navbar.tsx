@@ -1,13 +1,22 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import DarkModeToggle from './DarkModeToggle';
 import Logo from './Logo';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const isMeylan = usePathname() === '/entretien-jardin-meylan';
 
-  const navLinks = [
+  const navLinks = isMeylan ? [
+    { href: '#services', label: 'Services' },
+    { href: '#gallery', label: 'Interventions' },
+    { href: '#pourquoi', label: 'Notre approche' },
+    { href: '#faq', label: 'FAQ' },
+    { href: '#contact', label: 'Contact' },
+  ] : [
     { href: '#services', label: 'Voir nos services' },
     { href: '#process', label: 'Méthode' },
     { href: '#testimonials', label: 'Avis' },
@@ -33,20 +42,20 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <a href="#" className="flex items-center space-x-2 hover:opacity-80 transition-opacity">
+            <a href={isMeylan ? '/' : '#'} className="flex items-center space-x-2 hover:opacity-80 transition-opacity">
               <Logo className="h-10 w-auto" />
             </a>
           </div>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className={isMeylan ? 'hidden xl:flex items-center space-x-5' : 'hidden md:flex items-center space-x-8'}>
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 className="text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 font-medium text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 dark:focus:ring-offset-gray-900 rounded px-2 py-1"
                 onClick={(e) => {
-                  if (link.href && link.href.replace('#', '') === 'services') {
+                  if (!isMeylan && link.href && link.href.replace('#', '') === 'services') {
                     e.preventDefault();
                     const el = document.getElementById('services');
                     if (el) {
@@ -79,7 +88,9 @@ export default function Navbar() {
 
           {/* Right Section */}
           <div className="flex items-center space-x-4">
-            <button
+            {isMeylan ? (
+              <Link href="/#contact" className="hidden sm:inline-flex min-h-11 items-center rounded-lg bg-green-600 px-4 py-2 font-semibold text-white hover:bg-green-700">Devis gratuit</Link>
+            ) : <button
               className="hidden sm:inline-block bg-green-600 hover:bg-green-700 text-white font-semibold px-4 py-2 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 dark:focus:ring-offset-gray-900"
               onClick={() => {
                 const el = document.getElementById('contact');
@@ -89,14 +100,14 @@ export default function Navbar() {
               }}
             >
               Devis gratuit
-            </button>
+            </button>}
 
             <DarkModeToggle />
 
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-green-500"
+              className={`${isMeylan ? 'xl:hidden' : 'md:hidden'} p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-green-500`}
               aria-label="Menu"
               aria-expanded={isOpen}
             >
@@ -115,7 +126,7 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="md:hidden pb-4 space-y-2">
+          <div className={`${isMeylan ? 'xl:hidden' : 'md:hidden'} pb-4 space-y-2`}>
             {navLinks.map((link) => (
               <a
                 key={link.href}
@@ -123,7 +134,7 @@ export default function Navbar() {
                 className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
                 onClick={(e) => {
                   setIsOpen(false);
-                  if (link.href && link.href.replace('#', '') === 'services') {
+                  if (!isMeylan && link.href && link.href.replace('#', '') === 'services') {
                     e.preventDefault();
                     const el = document.getElementById('services');
                     if (el) {
@@ -152,9 +163,11 @@ export default function Navbar() {
               ))}
             </div>
 
-            <button className="w-full bg-green-600 dark:bg-green-500 hover:bg-green-700 dark:hover:bg-green-600 text-white font-semibold px-4 py-2 rounded-lg transition-colors mt-2">
+            {isMeylan ? (
+              <Link href="/#contact" onClick={() => setIsOpen(false)} className="mt-2 flex min-h-12 w-full items-center justify-center rounded-lg bg-green-600 px-4 py-2 font-semibold text-white hover:bg-green-700">Devis gratuit</Link>
+            ) : <button className="w-full bg-green-600 dark:bg-green-500 hover:bg-green-700 dark:hover:bg-green-600 text-white font-semibold px-4 py-2 rounded-lg transition-colors mt-2">
               Devis gratuit
-            </button>
+            </button>}
           </div>
         )}
       </div>
