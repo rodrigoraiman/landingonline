@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next';
-import { LOCAL_PAGE_SLUGS } from './[localPage]/page';
+import { LOCAL_PAGE_SLUGS } from '@/lib/local-routes';
 
 const BASE_URL = 'https://terrepaysage.com';
 

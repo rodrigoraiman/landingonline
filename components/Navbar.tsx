@@ -5,12 +5,13 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import DarkModeToggle from './DarkModeToggle';
 import Logo from './Logo';
+import { isLocalSlug, LOCAL_PAGE_SLUGS, LOCAL_ROUTES } from '@/lib/local-routes';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const isMeylan = usePathname() === '/entretien-jardin-meylan';
+  const isLocalPage = isLocalSlug(usePathname().replace(/^\//, '').replace(/\/$/, ''));
 
-  const navLinks = isMeylan ? [
+  const navLinks = isLocalPage ? [
     { href: '#services', label: 'Services' },
     { href: '#gallery', label: 'Interventions' },
     { href: '#pourquoi', label: 'Notre approche' },
@@ -25,16 +26,7 @@ export default function Navbar() {
     { href: '#contact', label: 'Contact' },
   ];
 
-  const localLinks = [
-    { href: '/jardinier-saint-ismier', label: 'Saint-Ismier' },
-    { href: '/entretien-jardin-meylan', label: 'Meylan' },
-    { href: '/jardinier-montbonnot-saint-martin', label: 'Montbonnot-Saint-Martin' },
-    { href: '/jardinier-biviers', label: 'Biviers' },
-    { href: '/debroussaillage-bernin', label: 'Bernin' },
-    { href: '/taille-haie-crolles', label: 'Crolles' },
-    { href: '/entretien-jardin-grenoble', label: 'Grenoble' },
-    { href: '/jardinier-corenc', label: 'Corenc' },
-  ];
+  const localLinks = LOCAL_PAGE_SLUGS.map(slug => ({ href: `/${slug}`, label: LOCAL_ROUTES[slug].city }));
 
   return (
     <nav className="sticky top-0 z-50 bg-white dark:bg-gray-900 shadow-sm dark:shadow-gray-800 transition-colors">
@@ -42,20 +34,20 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <a href={isMeylan ? '/' : '#'} className="flex items-center space-x-2 hover:opacity-80 transition-opacity">
+            <a href={isLocalPage ? '/' : '#'} className="flex items-center space-x-2 hover:opacity-80 transition-opacity">
               <Logo className="h-10 w-auto" />
             </a>
           </div>
 
           {/* Desktop Menu */}
-          <div className={isMeylan ? 'hidden xl:flex items-center space-x-5' : 'hidden md:flex items-center space-x-8'}>
+          <div className={isLocalPage ? 'hidden xl:flex items-center space-x-5' : 'hidden md:flex items-center space-x-8'}>
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 className="text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 font-medium text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 dark:focus:ring-offset-gray-900 rounded px-2 py-1"
                 onClick={(e) => {
-                  if (!isMeylan && link.href && link.href.replace('#', '') === 'services') {
+                  if (!isLocalPage && link.href && link.href.replace('#', '') === 'services') {
                     e.preventDefault();
                     const el = document.getElementById('services');
                     if (el) {
@@ -88,7 +80,7 @@ export default function Navbar() {
 
           {/* Right Section */}
           <div className="flex items-center space-x-4">
-            {isMeylan ? (
+            {isLocalPage ? (
               <Link href="/#contact" className="hidden sm:inline-flex min-h-11 items-center rounded-lg bg-green-600 px-4 py-2 font-semibold text-white hover:bg-green-700">Devis gratuit</Link>
             ) : <button
               className="hidden sm:inline-block bg-green-600 hover:bg-green-700 text-white font-semibold px-4 py-2 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 dark:focus:ring-offset-gray-900"
@@ -107,7 +99,7 @@ export default function Navbar() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className={`${isMeylan ? 'xl:hidden' : 'md:hidden'} p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-green-500`}
+              className={`${isLocalPage ? 'xl:hidden' : 'md:hidden'} p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-green-500`}
               aria-label="Menu"
               aria-expanded={isOpen}
             >
@@ -126,7 +118,7 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className={`${isMeylan ? 'xl:hidden' : 'md:hidden'} pb-4 space-y-2`}>
+          <div className={`${isLocalPage ? 'xl:hidden' : 'md:hidden'} pb-4 space-y-2`}>
             {navLinks.map((link) => (
               <a
                 key={link.href}
@@ -134,7 +126,7 @@ export default function Navbar() {
                 className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
                 onClick={(e) => {
                   setIsOpen(false);
-                  if (!isMeylan && link.href && link.href.replace('#', '') === 'services') {
+                  if (!isLocalPage && link.href && link.href.replace('#', '') === 'services') {
                     e.preventDefault();
                     const el = document.getElementById('services');
                     if (el) {
@@ -163,7 +155,7 @@ export default function Navbar() {
               ))}
             </div>
 
-            {isMeylan ? (
+            {isLocalPage ? (
               <Link href="/#contact" onClick={() => setIsOpen(false)} className="mt-2 flex min-h-12 w-full items-center justify-center rounded-lg bg-green-600 px-4 py-2 font-semibold text-white hover:bg-green-700">Devis gratuit</Link>
             ) : <button className="w-full bg-green-600 dark:bg-green-500 hover:bg-green-700 dark:hover:bg-green-600 text-white font-semibold px-4 py-2 rounded-lg transition-colors mt-2">
               Devis gratuit
