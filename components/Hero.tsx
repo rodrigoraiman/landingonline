@@ -67,8 +67,8 @@ export default function Hero() {
           </p>
 
           <h1 className="text-5xl font-bold leading-[0.98] tracking-tight text-white sm:text-6xl lg:text-7xl">
-            Votre jardin,
-            <span className="mt-2 block text-green-400">notre passion</span>
+            Votre jardin{' '}
+            <span className="mt-2 block text-green-400">a besoin d’entretien?</span>
           </h1>
 
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-gray-100 sm:text-xl">
