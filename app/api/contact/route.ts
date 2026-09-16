@@ -32,5 +32,5 @@ export async function POST(req: Request) {
   if (notification.status === 'failed') {
     console.error('Contact enregistré ; notification Resend non confirmée.', { contactId: contact.id, ...notification });
   }
-  return NextResponse.json({ ok: true, saved: true, contact, notification: notification.status }, { status: 201 });
+  return NextResponse.json({ ok: true, saved: true, notification: notification.status }, { status: 201 });
 }

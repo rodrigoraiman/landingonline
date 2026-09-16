@@ -1,7 +1,7 @@
 // Module utilisé uniquement par la route serveur /api/contact.
-import type { ContactData } from './contact-validation';
+import { CONTACT_SERVICES, type ContactData } from './contact-validation';
 
-type SavedContact = ContactData & { id: number };
+type SavedContact = Omit<ContactData, 'service' | 'commune' | 'contactPreference'> & { id: number; service: ContactData['service'] | null; commune: string | null; contactPreference: ContactData['contactPreference'] | null };
 type NotificationResult =
   | { status: 'sent' }
   | { status: 'failed'; reason: 'missing_configuration' | 'provider_rejected' | 'network_error'; httpStatus?: number };
@@ -19,7 +19,11 @@ export async function sendContactNotification(contact: SavedContact): Promise<No
 
   const fields = [
     ['Nom', contact.name], ['E-mail', contact.email],
-    ['Téléphone', contact.phone || 'Non renseigné'], ['Message', contact.message],
+    ['Téléphone', contact.phone || 'Non renseigné'],
+    ['Service souhaité', contact.service ? CONTACT_SERVICES[contact.service] : 'Non renseigné'],
+    ['Commune du jardin', contact.commune || 'Non renseignée'],
+    ['Contact souhaité', contact.contactPreference === 'telephone' ? 'Téléphone' : contact.contactPreference === 'email' ? 'E-mail' : 'Non renseigné'],
+    ['Message', contact.message],
   ];
   const html = `<h1>Nouvelle demande de contact</h1><dl>${fields.map(([label, value]) =>
     `<dt><strong>${label}</strong></dt><dd style="white-space:pre-wrap">${escapeEmailHtml(value)}</dd>`

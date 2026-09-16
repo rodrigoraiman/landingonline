@@ -1,7 +1,10 @@
 'use client';
 
 import { FormEvent, useRef, useState } from 'react';
-import { CONTACT_LIMITS } from '@/lib/contact-validation';
+import { CONTACT_LIMITS, CONTACT_SERVICES } from '@/lib/contact-validation';
+
+import { LOCAL_ROUTES } from '@/lib/local-routes';
+import { trackContactLead } from '@/lib/contact-analytics';
 
 type SubmissionState =
   | { status: 'idle' | 'sending' | 'success' | 'saved-warning' | 'uncertain' }
@@ -13,13 +16,16 @@ export default function Contact() {
     email: '',
     phone: '',
     message: '',
+    service: '',
+    commune: '',
+    contactPreference: 'email',
   });
   const [submission, setSubmission] = useState<SubmissionState>({ status: 'idle' });
   // Le verrou est immédiat, avant le rendu React, pour bloquer les doubles clics.
   const submissionLocked = useRef(false);
   const disabled = !['idle', 'error'].includes(submission.status);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
@@ -41,7 +47,8 @@ export default function Contact() {
       });
       const result: unknown = await res.json();
       if (result && typeof result === 'object' && 'saved' in result) {
-        if (result.saved === true) {
+        if (res.ok && result.saved === true) {
+          trackContactLead();
           setSubmission({ status: 'notification' in result && result.notification === 'sent' ? 'success' : 'saved-warning' });
           return; // Ne jamais proposer de renvoyer un contact déjà enregistré.
         }
@@ -66,7 +73,7 @@ export default function Contact() {
             Vous avez un projet d&apos;entretien de jardin ?
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-400">
-            Laissez-nous vos coordonnées et nous vous recontacterons rapidement pour échanger sur vos besoins.
+            Laissez-nous vos coordonnées et nous vous recontacterons pour échanger sur vos besoins.
           </p>
         </div>
 
@@ -110,7 +117,7 @@ export default function Contact() {
 
           {/* Contact Form */}
           <div className="md:col-span-2">
-            <form onSubmit={handleSubmit} aria-busy={submission.status === 'sending'} aria-describedby="contact-feedback" className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-8">
+            <form onSubmit={handleSubmit} aria-busy={submission.status === 'sending'} aria-describedby="contact-feedback" className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 sm:p-8">
               <div className="mb-6">
                 <label htmlFor="name" className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
                   Nom *
@@ -150,8 +157,30 @@ export default function Contact() {
               </div>
 
               <div className="mb-6">
+                <label htmlFor="service" className="block text-sm font-semibold mb-2">Quel service vous intéresse ? *</label>
+                <select id="service" name="service" value={formData.service} onChange={handleChange} required disabled={disabled} className="w-full min-h-11 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700">
+                  <option value="">Choisissez un service</option>
+                  {Object.entries(CONTACT_SERVICES).map(([value, label]) => <option key={value} value={value}>{label}</option>)}
+                </select>
+              </div>
+              <div className="mb-6">
+                <label htmlFor="commune" className="block text-sm font-semibold mb-2">Dans quelle commune se situe le jardin ? *</label>
+                <input id="commune" name="commune" list="contact-communes" autoComplete="address-level2" maxLength={CONTACT_LIMITS.commune} value={formData.commune} onChange={handleChange} required disabled={disabled} placeholder="Votre commune" className="w-full min-h-11 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700" />
+                <datalist id="contact-communes">
+                  {[...Object.values(LOCAL_ROUTES).map(route => route.city), 'La Tronche', 'Domène', 'Le Versoud'].map(city => <option key={city} value={city} />)}
+                </datalist>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">Vous pouvez aussi saisir une autre commune.</p>
+              </div>
+              <fieldset className="mb-6" disabled={disabled}>
+                <legend className="text-sm font-semibold mb-2">Comment préférez-vous être recontacté ?</legend>
+                <div className="flex flex-wrap gap-4">
+                  <label className="flex items-center gap-2 min-h-11"><input type="radio" name="contactPreference" value="email" checked={formData.contactPreference === 'email'} onChange={handleChange} /> E-mail</label>
+                  <label className="flex items-center gap-2 min-h-11"><input type="radio" name="contactPreference" value="telephone" checked={formData.contactPreference === 'telephone'} onChange={handleChange} /> Téléphone</label>
+                </div>
+              </fieldset>
+              {formData.contactPreference === 'telephone' && <div className="mb-6">
                 <label htmlFor="phone" className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
-                  Téléphone (optionnel)
+                  Téléphone *
                 </label>
                 <input
                   type="tel"
@@ -164,12 +193,13 @@ export default function Contact() {
                   onChange={handleChange}
                   className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500"
                   placeholder="+33 6 XX XX XX XX"
+                  required
                 />
-              </div>
+              </div>}
 
               <div className="mb-6">
                 <label htmlFor="message" className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
-                  Message *
+                  Décrivez le travail souhaité *
                 </label>
                 <textarea
                   id="message"
@@ -189,7 +219,7 @@ export default function Contact() {
                 {submission.status === 'sending' && <p className="mb-6 text-gray-700 dark:text-gray-300">Enregistrement de votre demande en cours…</p>}
                 {submission.status === 'success' && (
                   <p className="mb-6 rounded-lg border border-green-400 bg-green-100 p-4 text-green-900 dark:bg-green-950 dark:text-green-200">
-                    Merci ! Votre demande est enregistrée et l’avis par e-mail a été transmis. Il n’est pas nécessaire de renvoyer le formulaire.
+                    Merci ! Nous vous recontacterons pour préciser votre projet et, si nécessaire, organiser une visite.
                   </p>
                 )}
                 {submission.status === 'saved-warning' && (
@@ -210,7 +240,7 @@ export default function Contact() {
                 disabled={disabled}
                 className="w-full bg-green-600 dark:bg-green-500 hover:bg-green-700 dark:hover:bg-green-600 text-white font-bold px-6 py-3 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 dark:focus:ring-offset-gray-900 disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                {submission.status === 'sending' ? 'Envoi en cours…' : submission.status === 'success' || submission.status === 'saved-warning' ? 'Demande enregistrée' : submission.status === 'uncertain' ? 'Envoi à vérifier' : 'Envoyer'}
+                {submission.status === 'sending' ? 'Envoi en cours…' : submission.status === 'success' || submission.status === 'saved-warning' ? 'Demande enregistrée' : submission.status === 'uncertain' ? 'Envoi à vérifier' : 'Demander une visite ou un devis'}
               </button>
             </form>
           </div>
