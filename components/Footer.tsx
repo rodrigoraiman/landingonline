@@ -55,7 +55,7 @@ export default function Footer() {
                 Tarifs variables selon surface et accès du jardin.
               </p>
               <p>
-                Siège social : Région Rhône-Alpes | SIRET : 10234159100018 | Contact : contact@terrepaysage.fr
+                Siège social : Région Rhône-Alpes | SIRET : 10234159100018 | Contact : contact@terrepaysage.com
               </p>
             </div>
             <div className="mt-4 md:mt-0 flex items-center gap-2">

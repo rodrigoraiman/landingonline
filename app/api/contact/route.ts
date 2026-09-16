@@ -1,31 +1,36 @@
 import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
+import { validateContact } from '@/lib/contact-validation';
+import { sendContactNotification } from '@/lib/contact-notification';
 
-let prisma: PrismaClient;
-if (process.env.NODE_ENV === 'production') {
-  prisma = new PrismaClient();
-} else {
-  if (!(global as any).prisma) {
-    (global as any).prisma = new PrismaClient();
-  }
-  prisma = (global as any).prisma;
-}
+const globalForPrisma = globalThis as unknown as { prisma?: PrismaClient };
+const prisma = globalForPrisma.prisma ?? new PrismaClient();
+if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
 
 export async function POST(req: Request) {
-  const data = await req.json();
-  // Guardar en la base de datos
+  let input: unknown;
   try {
-    const contact = await prisma.contact.create({
-      data: {
-        name: data.name,
-        email: data.email,
-        phone: data.phone || null,
-        message: data.message,
-      },
-    });
-    return NextResponse.json({ ok: true, contact });
-  } catch (error) {
-    console.error('Error al guardar contacto:', error);
-    return NextResponse.json({ ok: false, error: 'Error al guardar contacto' }, { status: 500 });
+    input = await req.json();
+  } catch {
+    return NextResponse.json({ ok: false, saved: false, error: 'Le formulaire envoyé est illisible.' }, { status: 400 });
   }
+  const validated = validateContact(input);
+  if (!validated.ok) {
+    return NextResponse.json({ ok: false, saved: false, error: validated.error }, { status: 400 });
+  }
+
+  let contact;
+  try {
+    contact = await prisma.contact.create({ data: validated.data });
+  } catch {
+    console.error('Échec de l’enregistrement du contact.');
+    return NextResponse.json({ ok: false, saved: false, error: 'L’enregistrement a échoué. Veuillez réessayer dans quelques instants.' }, { status: 500 });
+  }
+
+  // Le contact reste enregistré, même si le fournisseur de courrier échoue.
+  const notification = await sendContactNotification(contact);
+  if (notification.status === 'failed') {
+    console.error('Contact enregistré ; notification Resend non confirmée.', { contactId: contact.id, ...notification });
+  }
+  return NextResponse.json({ ok: true, saved: true, contact, notification: notification.status }, { status: 201 });
 }

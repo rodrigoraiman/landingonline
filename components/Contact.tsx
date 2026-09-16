@@ -1,6 +1,11 @@
 'use client';
 
-import { FormEvent, useState } from 'react';
+import { FormEvent, useRef, useState } from 'react';
+import { CONTACT_LIMITS } from '@/lib/contact-validation';
+
+type SubmissionState =
+  | { status: 'idle' | 'sending' | 'success' | 'saved-warning' | 'uncertain' }
+  | { status: 'error'; message: string };
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -9,7 +14,10 @@ export default function Contact() {
     phone: '',
     message: '',
   });
-  const [submitted, setSubmitted] = useState(false);
+  const [submission, setSubmission] = useState<SubmissionState>({ status: 'idle' });
+  // Le verrou est immédiat, avant le rendu React, pour bloquer les doubles clics.
+  const submissionLocked = useRef(false);
+  const disabled = !['idle', 'error'].includes(submission.status);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -21,24 +29,32 @@ export default function Contact() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) {
-      alert('Veuillez remplir tous les champs obligatoires');
-      return;
-    }
-    // Enviar datos a la API propia
-    const res = await fetch('/api/contact', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData),
-    });
-    if (res.ok) {
-      setSubmitted(true);
-      setTimeout(() => {
-        setSubmitted(false);
-        setFormData({ name: '', email: '', phone: '', message: '' });
-      }, 3000);
-    } else {
-      alert('Erreur lors de l\'envoi. Veuillez réessayer.');
+    if (submissionLocked.current) return;
+    submissionLocked.current = true;
+    setSubmission({ status: 'sending' });
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      const result: unknown = await res.json();
+      if (result && typeof result === 'object' && 'saved' in result) {
+        if (result.saved === true) {
+          setSubmission({ status: 'notification' in result && result.notification === 'sent' ? 'success' : 'saved-warning' });
+          return; // Ne jamais proposer de renvoyer un contact déjà enregistré.
+        }
+        if (!res.ok && result.saved === false && 'error' in result && typeof result.error === 'string') {
+          submissionLocked.current = false;
+          setSubmission({ status: 'error', message: result.error });
+          return;
+        }
+      }
+      setSubmission({ status: 'uncertain' });
+    } catch {
+      // La réponse peut être perdue après le commit Prisma : pas de nouvel envoi aveugle.
+      setSubmission({ status: 'uncertain' });
     }
   };
 
@@ -47,7 +63,7 @@ export default function Contact() {
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            Vous avez un projet d'entretien de jardin ?
+            Vous avez un projet d&apos;entretien de jardin ?
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-400">
             Laissez-nous vos coordonnées et nous vous recontacterons rapidement pour échanger sur vos besoins.
@@ -77,7 +93,7 @@ export default function Contact() {
                   </svg>
                   Email
                 </h3>
-                <p className="text-gray-600 dark:text-gray-400">contact@terrepaysage.fr</p>
+                <a href="mailto:contact@terrepaysage.com" className="text-gray-600 dark:text-gray-400 break-all">contact@terrepaysage.com</a>
               </div>
 
               <div>
@@ -87,14 +103,14 @@ export default function Contact() {
                   </svg>
                   Zone de service
                 </h3>
-                <p className="text-gray-600 dark:text-gray-400">Saint-Ismier, Biviers, Montbonnot-Saint-Martin, Meylan, Bernin, Crolles, La Tronche, Corenc, Domène, Le Versoud, Grenoble et l'ensemble du Grésivaudan.</p>
+                <p className="text-gray-600 dark:text-gray-400">Saint-Ismier, Biviers, Montbonnot-Saint-Martin, Meylan, Bernin, Crolles, La Tronche, Corenc, Domène, Le Versoud, Grenoble et l&apos;ensemble du Grésivaudan.</p>
               </div>
             </div>
           </div>
 
           {/* Contact Form */}
           <div className="md:col-span-2">
-            <form onSubmit={handleSubmit} className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-8">
+            <form onSubmit={handleSubmit} aria-busy={submission.status === 'sending'} aria-describedby="contact-feedback" className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-8">
               <div className="mb-6">
                 <label htmlFor="name" className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
                   Nom *
@@ -103,6 +119,9 @@ export default function Contact() {
                   type="text"
                   id="name"
                   name="name"
+                  disabled={disabled}
+                  maxLength={CONTACT_LIMITS.name}
+                  autoComplete="name"
                   value={formData.name}
                   onChange={handleChange}
                   className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500"
@@ -119,6 +138,9 @@ export default function Contact() {
                   type="email"
                   id="email"
                   name="email"
+                  disabled={disabled}
+                  maxLength={CONTACT_LIMITS.email}
+                  autoComplete="email"
                   value={formData.email}
                   onChange={handleChange}
                   className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500"
@@ -135,6 +157,9 @@ export default function Contact() {
                   type="tel"
                   id="phone"
                   name="phone"
+                  disabled={disabled}
+                  maxLength={CONTACT_LIMITS.phone}
+                  autoComplete="tel"
                   value={formData.phone}
                   onChange={handleChange}
                   className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500"
@@ -149,6 +174,8 @@ export default function Contact() {
                 <textarea
                   id="message"
                   name="message"
+                  disabled={disabled}
+                  maxLength={CONTACT_LIMITS.message}
                   value={formData.message}
                   onChange={handleChange}
                   rows={5}
@@ -158,17 +185,32 @@ export default function Contact() {
                 ></textarea>
               </div>
 
-              {submitted && (
-                <div className="mb-6 p-4 bg-green-100 dark:bg-green-900 border border-green-400 dark:border-green-700 text-green-800 dark:text-green-300 rounded-lg">
-                  ✓ Merci ! Votre message a été envoyé. Nous vous recontacterons rapidement.
-                </div>
-              )}
+              <div id="contact-feedback" aria-live="polite" aria-atomic="true">
+                {submission.status === 'sending' && <p className="mb-6 text-gray-700 dark:text-gray-300">Enregistrement de votre demande en cours…</p>}
+                {submission.status === 'success' && (
+                  <p className="mb-6 rounded-lg border border-green-400 bg-green-100 p-4 text-green-900 dark:bg-green-950 dark:text-green-200">
+                    Merci ! Votre demande est enregistrée et l’avis par e-mail a été transmis. Il n’est pas nécessaire de renvoyer le formulaire.
+                  </p>
+                )}
+                {submission.status === 'saved-warning' && (
+                  <p className="mb-6 rounded-lg border border-amber-400 bg-amber-50 p-4 text-amber-950 dark:bg-amber-950 dark:text-amber-100">
+                    Votre demande est bien enregistrée, mais l’avis par e-mail n’a pas pu être envoyé ou confirmé. Ne renvoyez pas le formulaire. Vous pouvez nous joindre au <a className="underline" href="tel:+33665192766">06 65 19 27 66</a> pour le suivi.
+                  </p>
+                )}
+                {submission.status === 'error' && <p role="alert" className="mb-6 rounded-lg border border-red-400 bg-red-50 p-4 text-red-900 dark:bg-red-950 dark:text-red-200">{submission.message}</p>}
+                {submission.status === 'uncertain' && (
+                  <p role="alert" className="mb-6 rounded-lg border border-amber-400 bg-amber-50 p-4 text-amber-950 dark:bg-amber-950 dark:text-amber-100">
+                    La connexion n’a pas permis de confirmer l’enregistrement. Votre demande a peut-être déjà été reçue. Pour éviter un doublon, ne renvoyez pas le formulaire et contactez-nous au <a className="underline" href="tel:+33665192766">06 65 19 27 66</a>.
+                  </p>
+                )}
+              </div>
 
               <button
                 type="submit"
-                className="w-full bg-green-600 dark:bg-green-500 hover:bg-green-700 dark:hover:bg-green-600 text-white font-bold px-6 py-3 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 dark:focus:ring-offset-gray-900"
+                disabled={disabled}
+                className="w-full bg-green-600 dark:bg-green-500 hover:bg-green-700 dark:hover:bg-green-600 text-white font-bold px-6 py-3 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 dark:focus:ring-offset-gray-900 disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                Envoyer
+                {submission.status === 'sending' ? 'Envoi en cours…' : submission.status === 'success' || submission.status === 'saved-warning' ? 'Demande enregistrée' : submission.status === 'uncertain' ? 'Envoi à vérifier' : 'Envoyer'}
               </button>
             </form>
           </div>
